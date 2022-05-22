@@ -21,6 +21,7 @@ from monai.transforms import (
     ScaleIntensityRanged,
     Spacingd,
     Flipd,
+    SqueezeDimd,
     ToNumpyd,
     ToTensord,
 )
@@ -79,7 +80,8 @@ class SegmentationCardiac(InferTask):
         return [
             EnsureTyped(keys="pred", device=data.get("device") if data else None),
             AsDiscreted(keys="pred", argmax=True),
+            Orientationd(keys=["pred"], axcodes="LPS"),
             ToNumpyd(keys="pred"),
-            Restored(keys="pred", ref_image="image"),
+            Restored(keys=["pred"], ref_image="image"),
             BoundingBoxd(keys="pred", result="result", bbox="bbox")
         ]
