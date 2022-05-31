@@ -49,7 +49,7 @@ class SegmentationCardiac(TaskConfig):
         self.labels = ["cardiac"]
 
         # Model Files
-        model_file_name = "dc_89_best_metric_model.pth"
+        model_file_name = "dc_91_best_metric_model.pth"
         self.path = [
             os.path.join(self.model_dir, model_file_name),  # pretrained
             os.path.join(self.model_dir, model_file_name),  # published
